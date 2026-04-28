@@ -1,26 +1,38 @@
-name: CI Pipeline
+name: Geo Location CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      # 1. Get code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      # 2. Setup Node (important for Vite 8)
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20   # ⚠️ Important (Vite 8 needs Node 18+)
 
-      - name: Install Dependencies
+      # 3. Install dependencies
+      - name: Install dependencies
         run: npm install
 
-      - name: Build Project
+      # 4. Lint code
+      - name: Run ESLint
+        run: npm run lint
+
+      # 5. Run tests (Vitest)
+      - name: Run Tests
+        run: npm run test
+
+      # 6. Build project
+      - name: Build project
         run: npm run build
