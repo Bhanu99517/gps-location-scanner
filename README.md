@@ -2,7 +2,7 @@
 
 A modern **geo-location web application** built using **React + Vite** that allows users to detect and visualize their current location in real time.
 
-🔗 **Live Demo:** https://gps-location-bice.vercel.app
+🔗 **Live Demo:** https://gps-location-scanner.vercel.app
 📦 **Repository:** https://github.com/Bhanu99517/gps-location
 
 ---
